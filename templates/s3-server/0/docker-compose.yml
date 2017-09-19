@@ -1,0 +1,29 @@
+version: '2'
+services:
+  server:
+    image: scality/s3server
+    command: npm start
+    environment:
+      - S3_HOSTNAME=${hostname}
+      - SCALITY_ACCESS_KEY_ID=${access_key}
+      - SCALITY_SECRET_ACCESS_KEY=${secret_key}
+    {{- if eq .Values.expose_ports "true" }}
+    ports:
+      {{- if eq .Values.expose_exact "true" }}
+      - 8000:6030
+      {{- else }}
+      - 8000
+      {{- end }}
+    {{- end }}
+    volumes_from:
+      - data
+    labels:
+      io.rancher.sidekicks: data
+
+  data:
+    image: scality/s3server
+    command: /bin/true && mkdir -p /data/metadata && mkdir -p /data/data
+    volumes:
+      - /data
+    labels:
+      io.rancher.container.start_once: true

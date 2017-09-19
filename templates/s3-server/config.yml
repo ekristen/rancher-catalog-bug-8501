@@ -1,0 +1,3 @@
+name: S3 Server
+version: v0
+description: An open-source Node.js implementation of a server handling the Amazon S3 protocol

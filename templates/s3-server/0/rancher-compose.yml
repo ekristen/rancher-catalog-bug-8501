@@ -1,0 +1,38 @@
+.catalog:
+  name: S3 Server
+  version: v0
+  description: An open-source Node.js implementation of a server handling the Amazon S3 protocol
+  questions:
+    - variable: hostname
+      label: Hostname
+      description: The hostname that the s3 proxy will be access by
+      type: string
+      default: s3.rancher.local
+      required: true
+    - variable: access_key
+      label: Access Key ID
+      description: The root default access key used to interact with the S3 server
+      type: string
+      default: development
+      required: true
+    - variable: secret_key
+      label: Secret Access Key
+      description: The matching root secret access key for the Access Key ID
+      type: string
+      default: development
+      required: true
+    - variable: expose_ports
+      label: Expose Ports
+      description: Will expose a random high port on the host to access this
+      type: boolean
+      default: true
+    - variable: expose_exact
+      label: Expose Exact Ports
+      description: Expose 6030 directly on the server (only works if there are not multiple databases)
+      type: boolean
+      defeault: false
+    - variable: redis_server
+      label: Redis Server
+      description: a redis server instance
+      type: service
+      default: redis/server

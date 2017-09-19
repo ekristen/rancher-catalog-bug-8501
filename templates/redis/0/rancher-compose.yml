@@ -1,0 +1,5 @@
+version: '2'
+catalog:
+  name: Redis
+  version: v0-3.2.8
+  description: Redis Server
